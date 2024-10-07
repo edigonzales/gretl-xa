@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  editdb:
+    image: sogis/postgis:16-3.4
+    container_name: editdb
+    ports:
+      - "54321:5432"
+    environment:
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: edit
+    restart: always
+    command: --max_prepared_transactions=100
+
+  pubdb:
+    image: sogis/postgis:16-3.4
+    container_name: pubdb
+    ports:
+      - "54322:5432"
+    environment:
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: pub
+    restart: always
+    command: --max_prepared_transactions=100
